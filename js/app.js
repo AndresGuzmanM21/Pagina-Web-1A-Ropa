@@ -329,6 +329,8 @@ _Me interesa confirmar el total y el envío antes de recibir._`;
   function fillContactInfo() {
     $("#footerPhone").setAttribute("href", waLink("hola"));
     $("#year").textContent = new Date().getFullYear();
+    const cta = document.getElementById("ctaCount");
+    if (cta) cta.textContent = "Ver los " + PRODUCTS.length + " productos disponibles";
   }
 
   /* ---------- EVENTOS ---------- */

@@ -87,28 +87,51 @@ const CATEGORIES = [
 
 const PRODUCTS = [
   /* ---------------- CAMISAS ---------------- */
-  { id: 1,  name: "Camisa Oxford Clásica",   cat: "camisas", art: "polo",   c1: "#eef1f6", c2: "#b9c4d6", price: 99900,  old: 149900, badge: "Más vendido", sizes: ["S","M","L","XL","XXL"], rating: 4.9, reviews: 268 },
-  { id: 2,  name: "Camisa Linen Summer",     cat: "camisas", art: "polo",   c1: "#f7e7cf", c2: "#e8c39a", price: 89900,  old: 139900,   badge: "",        sizes: ["S","M","L","XL"],        rating: 4.8, reviews: 191 },
-  { id: 3,  name: "Camisa Oversize Urban",   cat: "camisas", art: "polo",   c1: "#23262e", c2: "#4a5060", price: 79900,  old: 119900, badge: "",      sizes: ["S","M","L","XL","XXL"], rating: 4.8, reviews: 174 },
-  { id: 4,  name: "Camisa Denim Casual",     cat: "camisas", art: "polo",   c1: "#3f6ea8", c2: "#8fb4dd", price: 109900, old: 159900, badge: "Nuevo",       sizes: ["M","L","XL","XXL"],     rating: 4.9, reviews: 132 },
-  { id: 5,  name: "Camisa Basic Fit",        cat: "camisas", art: "polo",   c1: "#f4f4f4", c2: "#cfcfcf", price: 69900,  old: 99900,  badge: "",      sizes: ["S","M","L","XL"],        rating: 4.7, reviews: 305 },
-  { id: 6,  name: "Camisa Sport Dry",        cat: "camisas", art: "polo",   c1: "#0b6e4f", c2: "#25b184", price: 84900,  old: 124900,   badge: "",        sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 96 },
-
-  /* ---------------- SUDADERAS ---------------- */
-  { id: 7,  name: "Sudadera Hoodie Premium",  cat: "sudaderas", art: "hoodie", c1: "#17181d", c2: "#3c4049", price: 139900, old: 199900, badge: "Más vendido", sizes: ["M","L","XL","XXL"],   rating: 4.9, reviews: 247 },
-  { id: 8,  name: "Sudadera Oversize Basic",  cat: "sudaderas", art: "hoodie", c1: "#e6e6e8", c2: "#b4b6bd", price: 119900, old: 169900,   badge: "",        sizes: ["S","M","L","XL","XXL"], rating: 4.8, reviews: 203 },
-  { id: 9,  name: "Sudadera Cozy Fit",        cat: "sudaderas", art: "hoodie", c1: "#c78b8b", c2: "#e0b1b1", price: 129900, old: 189900, badge: "",      sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 158 },
-  { id: 10, name: "Sudadera Street Logo",     cat: "sudaderas", art: "hoodie", c1: "#1a2b6b", c2: "#4a63c7", price: 149900, old: 219900, badge: "Nuevo",       sizes: ["M","L","XL","XXL"],   rating: 4.9, reviews: 117 },
-  { id: 11, name: "Sudadera Tech Dry",        cat: "sudaderas", art: "hoodie", c1: "#2b2f36", c2: "#5b6270", price: 109900, old: 159900, badge: "",      sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 88 },
-  { id: 12, name: "Sudadera Colorblock",      cat: "sudaderas", art: "hoodie", c1: "#ff7a2f", c2: "#ffc93c", price: 134900, old: 189900,   badge: "",        sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 104 },
-
+  { id: 1, name: "Camisa Deportiva Jordan 23 Verde", cat: "camisas", image: "assets/img/Camisa Deportiva Jordan 23 Verde.jpeg", badge: "Más vendido", sizes: ["S","M","L","XL"], rating: 4.7, reviews: 97 },
+  { id: 2, name: "Camisa Deportiva Azul Marino", cat: "camisas", image: "assets/img/Camisa Deportiva Azul Marino.jpeg", badge: "", sizes: ["M","L","XL","XXL"], rating: 4.8, reviews: 134 },
+  { id: 3, name: "Camisa Deportiva Azul Royal", cat: "camisas", image: "assets/img/Camisa Deportiva Azul Royal.jpeg", badge: "Nuevo", sizes: ["S","M","L","XL","XXL"], rating: 4.9, reviews: 171 },
+  { id: 4, name: "Camisa Deportiva Jordan 23 Roja", cat: "camisas", image: "assets/img/Camisa Deportiva Jordan 23 Roja.jpeg", badge: "", sizes: ["S","M","L","XL"], rating: 5, reviews: 208 },
+  { id: 5, name: "Camisa Supreme Blanca", cat: "camisas", image: "assets/img/Camisa Supreme Blanca.jpeg", badge: "", sizes: ["M","L","XL","XXL"], rating: 4.6, reviews: 245 },
+  { id: 6, name: "Camisa Supreme Original", cat: "camisas", image: "assets/img/Camisa Supreme Original.jpeg", badge: "", sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 282 },
+  { id: 7, name: "Camisa Deportiva Jordan Verde", cat: "camisas", image: "assets/img/Camisa Deportiva Jordan Verde.jpeg", badge: "", sizes: ["S","M","L","XL"], rating: 4.8, reviews: 319 },
+  { id: 8, name: "Camisa Casual Clásica", cat: "camisas", image: "assets/img/Camisa Casual Clasica.jpeg", badge: "Más vendido", sizes: ["M","L","XL","XXL"], rating: 4.9, reviews: 96 },
   /* ---------------- CHAQUETAS ---------------- */
-  { id: 13, name: "Chaqueta Bomber Utility",  cat: "chaquetas", art: "jacket", c1: "#23252b", c2: "#55565e", price: 259900, old: 359900, badge: "Más vendido", sizes: ["M","L","XL","XXL"],   rating: 4.9, reviews: 186 },
-  { id: 14, name: "Chaqueta Denim Classic",   cat: "chaquetas", art: "jacket", c1: "#2e5c8a", c2: "#79a8d6", price: 219900, old: 309900,   badge: "",        sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 149 },
-  { id: 15, name: "Chaqueta Windbreaker",     cat: "chaquetas", art: "jacket", c1: "#12614a", c2: "#3fbf95", price: 189900, old: 269900, badge: "",      sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 121 },
-  { id: 16, name: "Chaqueta Puffer Light",    cat: "chaquetas", art: "jacket", c1: "#3a2b52", c2: "#7b5fa8", price: 289900, old: 399900, badge: "Nuevo",       sizes: ["M","L","XL","XXL"],   rating: 4.9, reviews: 97 },
-  { id: 17, name: "Chaqueta Bomber Slim",     cat: "chaquetas", art: "jacket", c1: "#4a3a2b", c2: "#9a7c5b", price: 249900, old: 349900,   badge: "",        sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 84 },
-  { id: 18, name: "Chaqueta Trucker Black",   cat: "chaquetas", art: "jacket", c1: "#101216", c2: "#3a3f4a", price: 229900, old: 329900, badge: "",      sizes: ["M","L","XL","XXL"],   rating: 4.8, reviews: 112 }
+  { id: 9, name: "Chaqueta Adidas Tricolor", cat: "chaquetas", image: "assets/img/Chaqueta Adidas Tricolor.jpeg", badge: "", sizes: ["S","M","L","XL","XXL"], rating: 5, reviews: 133 },
+  { id: 10, name: "Chaqueta Adidas Blanca Clásica", cat: "chaquetas", image: "assets/img/Chaqueta Adidas Blanca Clasica.jpeg", badge: "Nuevo", sizes: ["S","M","L","XL"], rating: 4.6, reviews: 170 },
+  { id: 11, name: "Chaqueta Adidas Blanca Esencial", cat: "chaquetas", image: "assets/img/Chaqueta Adidas Blanca Esencial.jpeg", badge: "", sizes: ["M","L","XL","XXL"], rating: 4.7, reviews: 207 },
+  { id: 12, name: "Chaqueta Adidas Multicolor", cat: "chaquetas", image: "assets/img/Chaqueta Adidas Multicolor.jpeg", badge: "", sizes: ["S","M","L","XL","XXL"], rating: 4.8, reviews: 244 },
+  { id: 13, name: "Chaqueta Adidas Negra Original", cat: "chaquetas", image: "assets/img/Chaqueta Adidas Negra Original.jpeg", badge: "", sizes: ["S","M","L","XL"], rating: 4.9, reviews: 281 },
+  { id: 14, name: "Chaqueta Adidas Negra Deportiva", cat: "chaquetas", image: "assets/img/Chaqueta Adidas Negra Deportiva.jpeg", badge: "", sizes: ["M","L","XL","XXL"], rating: 5, reviews: 318 },
+  { id: 15, name: "Chaqueta Adidas Roja Deportiva", cat: "chaquetas", image: "assets/img/Chaqueta Adidas Roja Deportiva.jpeg", badge: "Más vendido", sizes: ["S","M","L","XL","XXL"], rating: 4.6, reviews: 95 },
+  { id: 16, name: "Chaqueta de Algodón Negra Premium", cat: "chaquetas", image: "assets/img/Chaqueta de Algodon Negra Premium.jpeg", badge: "", sizes: ["S","M","L","XL"], rating: 4.7, reviews: 132 },
+  { id: 17, name: "Chaqueta Adidas Azul y Roja Retro", cat: "chaquetas", image: "assets/img/Chaqueta Adidas Azul y Roja Retro.jpeg", badge: "Nuevo", sizes: ["M","L","XL","XXL"], rating: 4.8, reviews: 169 },
+  { id: 18, name: "Chaqueta Azul Casual", cat: "chaquetas", image: "assets/img/Chaqueta Azul Casual.jpeg", badge: "", sizes: ["S","M","L","XL","XXL"], rating: 4.9, reviews: 206 },
+  { id: 19, name: "Chaqueta Beige de Algodón", cat: "chaquetas", image: "assets/img/Chaqueta Beige de Algodon.jpeg", badge: "", sizes: ["S","M","L","XL"], rating: 5, reviews: 243 },
+  { id: 20, name: "Chaqueta Beige Clásica", cat: "chaquetas", image: "assets/img/Chaqueta Beige Clasica.jpeg", badge: "", sizes: ["M","L","XL","XXL"], rating: 4.6, reviews: 280 },
+  { id: 21, name: "Chaqueta Bicolor Blanca y Negra", cat: "chaquetas", image: "assets/img/Chaqueta Bicolor Blanca y Negra.jpeg", badge: "", sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 317 },
+  { id: 22, name: "Chaqueta con Cierre Total", cat: "chaquetas", image: "assets/img/Chaqueta con Cierre Total.jpeg", badge: "Más vendido", sizes: ["S","M","L","XL"], rating: 4.8, reviews: 94 },
+  { id: 23, name: "Chaqueta Ducati Blanca", cat: "chaquetas", image: "assets/img/Chaqueta Ducati Blanca.jpeg", badge: "", sizes: ["M","L","XL","XXL"], rating: 4.9, reviews: 131 },
+  { id: 24, name: "Chaqueta Ducati Negra", cat: "chaquetas", image: "assets/img/Chaqueta Ducati Negra.jpeg", badge: "Nuevo", sizes: ["S","M","L","XL","XXL"], rating: 5, reviews: 168 },
+  { id: 25, name: "Chaqueta Ducati Racing", cat: "chaquetas", image: "assets/img/Chaqueta Ducati Racing.jpeg", badge: "", sizes: ["S","M","L","XL"], rating: 4.6, reviews: 205 },
+  { id: 26, name: "Chaqueta Gris Urbana", cat: "chaquetas", image: "assets/img/Chaqueta Gris Urbana.jpeg", badge: "", sizes: ["M","L","XL","XXL"], rating: 4.7, reviews: 242 },
+  { id: 27, name: "Chaqueta Mercedes Benz Premium", cat: "chaquetas", image: "assets/img/Chaqueta Mercedes Benz Premium.jpeg", badge: "", sizes: ["S","M","L","XL","XXL"], rating: 4.8, reviews: 279 },
+  { id: 28, name: "Chaqueta Negra Urbana", cat: "chaquetas", image: "assets/img/Chaqueta Negra Urbana.jpeg", badge: "", sizes: ["S","M","L","XL"], rating: 4.9, reviews: 316 },
+  { id: 29, name: "Chaqueta Negra de Algodón", cat: "chaquetas", image: "assets/img/Chaqueta Negra de Algodon.jpeg", badge: "Más vendido", sizes: ["M","L","XL","XXL"], rating: 5, reviews: 93 },
+  { id: 30, name: "Chaqueta Negra Clásica", cat: "chaquetas", image: "assets/img/Chaqueta Negra Clasica.jpeg", badge: "", sizes: ["S","M","L","XL","XXL"], rating: 4.6, reviews: 130 },
+  { id: 31, name: "Chaqueta The North Face", cat: "chaquetas", image: "assets/img/Chaqueta The North Face.jpeg", badge: "Nuevo", sizes: ["S","M","L","XL"], rating: 4.7, reviews: 167 },
+  { id: 32, name: "Chaqueta Porsche Racing", cat: "chaquetas", image: "assets/img/Chaqueta Porsche Racing.jpeg", badge: "", sizes: ["M","L","XL","XXL"], rating: 4.8, reviews: 204 },
+  { id: 33, name: "Chaqueta Supreme Negra", cat: "chaquetas", image: "assets/img/Chaqueta Supreme Negra.jpeg", badge: "", sizes: ["S","M","L","XL","XXL"], rating: 4.9, reviews: 241 },
+  /* ---------------- SUDADERAS ---------------- */
+  { id: 34, name: "Buzo Deportivo Gris Oversize", cat: "sudaderas", image: "assets/img/Buzo Deportivo Gris Oversize.jpeg", badge: "", sizes: ["S","M","L","XL"], rating: 5, reviews: 278 },
+  { id: 35, name: "Buzo Deportivo Gris Clásico", cat: "sudaderas", image: "assets/img/Buzo Deportivo Gris Clasico.jpeg", badge: "", sizes: ["M","L","XL","XXL"], rating: 4.6, reviews: 315 },
+  { id: 36, name: "Buzo Deportivo Rojo", cat: "sudaderas", image: "assets/img/Buzo Deportivo Rojo.jpeg", badge: "Más vendido", sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 92 },
+  { id: 37, name: "Buzo Deportivo Verde", cat: "sudaderas", image: "assets/img/Buzo Deportivo Verde.jpeg", badge: "", sizes: ["S","M","L","XL"], rating: 4.8, reviews: 129 },
+  { id: 38, name: "Sudadera Supreme Azul", cat: "sudaderas", image: "assets/img/Sudadera Supreme Azul.jpeg", badge: "Nuevo", sizes: ["M","L","XL","XXL"], rating: 4.9, reviews: 166 },
+  { id: 39, name: "Conjunto Sudadera Supreme", cat: "sudaderas", image: "assets/img/Conjunto Sudadera Supreme.jpeg", badge: "", sizes: ["S","M","L","XL","XXL"], rating: 5, reviews: 203 },
+  { id: 40, name: "Sudadera Nike Azul", cat: "sudaderas", image: "assets/img/Sudadera Nike Azul.jpeg", badge: "", sizes: ["S","M","L","XL"], rating: 4.6, reviews: 240 },
+  { id: 41, name: "Sudadera Nike Roja", cat: "sudaderas", image: "assets/img/Sudadera Nike Roja.jpeg", badge: "", sizes: ["M","L","XL","XXL"], rating: 4.7, reviews: 277 },
+  { id: 42, name: "Sudadera Supreme Roja Clásica", cat: "sudaderas", image: "assets/img/Sudadera Supreme Roja Clasica.jpeg", badge: "", sizes: ["S","M","L","XL","XXL"], rating: 4.8, reviews: 314 },
+  { id: 43, name: "Sudadera Supreme Roja Oversize", cat: "sudaderas", image: "assets/img/Sudadera Supreme Roja Oversize.jpeg", badge: "Más vendido", sizes: ["S","M","L","XL"], rating: 4.9, reviews: 91 }
 ];
 
 const TESTIMONIALS = [
