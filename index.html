@@ -59,7 +59,6 @@
         <div class="nav-drawer" id="navDrawer">
           <nav class="nav" id="nav">
             <a href="#inicio" class="nav__link">Inicio</a>
-            <a href="#ofertas" class="nav__link">Ofertas</a>
             <a href="#catalogo" class="nav__link">Catálogo</a>
             <a href="#como-comprar" class="nav__link">Cómo comprar</a>
             <a href="#faq" class="nav__link">Preguntas</a>
@@ -114,7 +113,7 @@
           </div>
           <h1 class="hero__title">
             Ropa importada
-            <span class="gradient-text">1A a los mejores precios</span>
+            <span class="gradient-text">1A en tu puerta</span>
           </h1>
           <p class="hero__sub">
             Recibe tu pedido en tu casa, <b>revísalo con calma</b> y paga
@@ -169,9 +168,7 @@
             <img id="heroImg2" alt="Sudadera importada" />
             <div class="hero-card__info">
               <b>Sudadera Premium</b>
-              <span class="price-line"
-                ><s>$ 199.900</s> <strong>$ 139.900</strong></span
-              >
+              <span class="price-line">Envío 24-48 horas</span>
             </div>
           </div>
           <div class="hero-badge">
@@ -224,44 +221,7 @@
       </div>
     </section>
 
-    <!-- ============ OFERTAS CON CONTADOR ============ -->
-    <section class="section offers" id="ofertas">
-      <div class="container">
-        <div class="section-head" data-reveal>
-          <span class="eyebrow">Ofertas relámpago</span>
-          <h2 class="section-title">
-            Precios que duran <span class="gradient-text">pocas horas</span>
-          </h2>
-          <p class="section-sub">
-            Descuentos reales sobre colección importada. Cuando el contador
-            llegue a cero, vuelven a su precio normal.
-          </p>
-        </div>
-
-        <div class="countdown" id="countdown" data-reveal>
-          <div class="countdown__box"><b id="cdH">00</b><span>Horas</span></div>
-          <div class="countdown__sep">:</div>
-          <div class="countdown__box">
-            <b id="cdM">00</b><span>Minutos</span>
-          </div>
-          <div class="countdown__sep">:</div>
-          <div class="countdown__box">
-            <b id="cdS">00</b><span>Segundos</span>
-          </div>
-          <div class="countdown__label">La oferta termina en</div>
-        </div>
-
-        <div class="grid" id="offerGrid"></div>
-
-        <div class="section-cta" data-reveal>
-          <a href="#catalogo" class="btn btn--dark btn--lg"
-            >Ver los 18 productos disponibles</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ BENEFICIOS ============ -->
+        <!-- ============ BENEFICIOS ============ -->
     <section class="section benefits">
       <div class="container">
         <div class="section-head" data-reveal>
@@ -320,6 +280,12 @@
             </p>
           </article>
         </div>
+
+        <div class="section-cta" data-reveal>
+          <a href="#catalogo" class="btn btn--dark btn--lg"
+            >Ver los 18 productos disponibles</a
+          >
+        </div>
       </div>
     </section>
 
@@ -333,7 +299,7 @@
             <span class="gradient-text">próxima prenda favorita</span>
           </h2>
           <p class="section-sub">
-            Filtra por categoría y ordena por precio o popularidad.
+            Filtra por categoría, busca por nombre o ordénalos por popularidad.
           </p>
         </div>
 
@@ -359,8 +325,6 @@
             </label>
             <select class="select" id="sort" aria-label="Ordenar">
               <option value="featured">Más vendidos</option>
-              <option value="low">Precio: menor a mayor</option>
-              <option value="high">Precio: mayor a menor</option>
               <option value="rating">Mejor valorados</option>
             </select>
           </div>
@@ -428,15 +392,14 @@
 
         <div class="steps__banner" data-reveal>
           <div>
-            <b>Oferta de bienvenida:</b> usa el código
-            <span class="code">PRIMERA1A</span> y te llevamos el envío
-            <b>GRATIS</b>.
+            <b>¿Dudas con tu talla?</b> Escríbenos y un asesor te responde en
+            minutos antes de comprar.
           </div>
           <a
             href="#"
             class="btn btn--primary"
-            data-wa="hola, quiero usar el código PRIMERA1A"
-            >Quiero mi envío gratis</a
+            data-wa="hola, necesito ayuda para elegir mi talla"
+            >Quiero asesoría</a
           >
         </div>
       </div>
@@ -529,7 +492,7 @@
           </a>
           <p>
             Camisas, chaquetas y sudaderas importadas con envío contra entrega.
-            Calidad, estilo y precios que sí puedes pagar.
+            Calidad y estilo que sí puedes pagar.
           </p>
           <div class="footer__social">
             <a
@@ -547,7 +510,6 @@
         <div class="footer__col">
           <h4>Tienda</h4>
           <a href="#catalogo">Catálogo completo</a>
-          <a href="#ofertas">Ofertas del día</a>
           <a href="#catalogo">Camisas</a>
           <a href="#catalogo">Chaquetas</a>
           <a href="#catalogo">Sudaderas</a>
@@ -609,20 +571,8 @@
         <div class="cart__items" id="cartItems"></div>
 
         <div class="cart__foot">
-          <div class="cart__row">
-            <span>Subtotal</span>
-            <b id="cartSub">$ 0</b>
-          </div>
-          <div class="cart__row cart__row--ship" id="shipRow">
-            <span>Envío</span>
-            <b id="cartShip">$ 15.000</b>
-          </div>
           <div class="cart__free" id="freeHint">
-            Agrega productos para tener envío GRATIS
-          </div>
-          <div class="cart__row cart__row--total">
-            <span>Total a pagar al recibir</span>
-            <b id="cartTotal">$ 0</b>
+            El total y el envío te los confirmamos por WhatsApp
           </div>
 
           <div class="cart__form">

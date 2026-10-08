@@ -4,22 +4,13 @@
    ============================================================ */
 const CONFIG = {
   whatsapp: "573053654031", // tu numero con codigo de pais (Colombia +57), sin + ni espacios
-  currency: "$",
-  locale: "es-CO", // formato de miles: 89.900
   store: {
     name: "1A Ropa Importada"
   },
   shipping: {
-    cost: 15000,
-    freeOver: 300000,
     time: "24 – 48 horas"
-  },
-  offerEndsInHours: 48 // horas de vigencia del contador de oferta
+  }
 };
-
-/* ---------- FORMATO DE PRECIO (pesos colombianos) ---------- */
-const fmtNum = (n) => new Intl.NumberFormat(CONFIG.locale, { maximumFractionDigits: 0 }).format(Math.round(n));
-const money = (n) => `${CONFIG.currency} ${fmtNum(n)}`;
 
 /* ============================================================
    ILUSTRACIONES DE PRODUCTO (SVG)
@@ -85,7 +76,7 @@ function artURI(product) {
 
 /* ============================================================
    CATÁLOGO — solo Camisas, Chaquetas y Sudaderas
-   Precios en pesos colombianos (COP)
+   Los precios NO se muestran: se cotizan por WhatsApp.
    ============================================================ */
 const CATEGORIES = [
   { id: "todo",       label: "Todo" },
@@ -97,27 +88,27 @@ const CATEGORIES = [
 const PRODUCTS = [
   /* ---------------- CAMISAS ---------------- */
   { id: 1,  name: "Camisa Oxford Clásica",   cat: "camisas", art: "polo",   c1: "#eef1f6", c2: "#b9c4d6", price: 99900,  old: 149900, badge: "Más vendido", sizes: ["S","M","L","XL","XXL"], rating: 4.9, reviews: 268 },
-  { id: 2,  name: "Camisa Linen Summer",     cat: "camisas", art: "polo",   c1: "#f7e7cf", c2: "#e8c39a", price: 89900,  old: 139900, badge: "-36%",        sizes: ["S","M","L","XL"],        rating: 4.8, reviews: 191 },
-  { id: 3,  name: "Camisa Oversize Urban",   cat: "camisas", art: "polo",   c1: "#23262e", c2: "#4a5060", price: 79900,  old: 119900, badge: "Oferta",      sizes: ["S","M","L","XL","XXL"], rating: 4.8, reviews: 174 },
+  { id: 2,  name: "Camisa Linen Summer",     cat: "camisas", art: "polo",   c1: "#f7e7cf", c2: "#e8c39a", price: 89900,  old: 139900,   badge: "",        sizes: ["S","M","L","XL"],        rating: 4.8, reviews: 191 },
+  { id: 3,  name: "Camisa Oversize Urban",   cat: "camisas", art: "polo",   c1: "#23262e", c2: "#4a5060", price: 79900,  old: 119900, badge: "",      sizes: ["S","M","L","XL","XXL"], rating: 4.8, reviews: 174 },
   { id: 4,  name: "Camisa Denim Casual",     cat: "camisas", art: "polo",   c1: "#3f6ea8", c2: "#8fb4dd", price: 109900, old: 159900, badge: "Nuevo",       sizes: ["M","L","XL","XXL"],     rating: 4.9, reviews: 132 },
-  { id: 5,  name: "Camisa Basic Fit",        cat: "camisas", art: "polo",   c1: "#f4f4f4", c2: "#cfcfcf", price: 69900,  old: 99900,  badge: "Oferta",      sizes: ["S","M","L","XL"],        rating: 4.7, reviews: 305 },
-  { id: 6,  name: "Camisa Sport Dry",        cat: "camisas", art: "polo",   c1: "#0b6e4f", c2: "#25b184", price: 84900,  old: 124900, badge: "-32%",        sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 96 },
+  { id: 5,  name: "Camisa Basic Fit",        cat: "camisas", art: "polo",   c1: "#f4f4f4", c2: "#cfcfcf", price: 69900,  old: 99900,  badge: "",      sizes: ["S","M","L","XL"],        rating: 4.7, reviews: 305 },
+  { id: 6,  name: "Camisa Sport Dry",        cat: "camisas", art: "polo",   c1: "#0b6e4f", c2: "#25b184", price: 84900,  old: 124900,   badge: "",        sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 96 },
 
   /* ---------------- SUDADERAS ---------------- */
   { id: 7,  name: "Sudadera Hoodie Premium",  cat: "sudaderas", art: "hoodie", c1: "#17181d", c2: "#3c4049", price: 139900, old: 199900, badge: "Más vendido", sizes: ["M","L","XL","XXL"],   rating: 4.9, reviews: 247 },
-  { id: 8,  name: "Sudadera Oversize Basic",  cat: "sudaderas", art: "hoodie", c1: "#e6e6e8", c2: "#b4b6bd", price: 119900, old: 169900, badge: "-30%",        sizes: ["S","M","L","XL","XXL"], rating: 4.8, reviews: 203 },
-  { id: 9,  name: "Sudadera Cozy Fit",        cat: "sudaderas", art: "hoodie", c1: "#c78b8b", c2: "#e0b1b1", price: 129900, old: 189900, badge: "Oferta",      sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 158 },
+  { id: 8,  name: "Sudadera Oversize Basic",  cat: "sudaderas", art: "hoodie", c1: "#e6e6e8", c2: "#b4b6bd", price: 119900, old: 169900,   badge: "",        sizes: ["S","M","L","XL","XXL"], rating: 4.8, reviews: 203 },
+  { id: 9,  name: "Sudadera Cozy Fit",        cat: "sudaderas", art: "hoodie", c1: "#c78b8b", c2: "#e0b1b1", price: 129900, old: 189900, badge: "",      sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 158 },
   { id: 10, name: "Sudadera Street Logo",     cat: "sudaderas", art: "hoodie", c1: "#1a2b6b", c2: "#4a63c7", price: 149900, old: 219900, badge: "Nuevo",       sizes: ["M","L","XL","XXL"],   rating: 4.9, reviews: 117 },
-  { id: 11, name: "Sudadera Tech Dry",        cat: "sudaderas", art: "hoodie", c1: "#2b2f36", c2: "#5b6270", price: 109900, old: 159900, badge: "Oferta",      sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 88 },
-  { id: 12, name: "Sudadera Colorblock",      cat: "sudaderas", art: "hoodie", c1: "#ff7a2f", c2: "#ffc93c", price: 134900, old: 189900, badge: "-29%",        sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 104 },
+  { id: 11, name: "Sudadera Tech Dry",        cat: "sudaderas", art: "hoodie", c1: "#2b2f36", c2: "#5b6270", price: 109900, old: 159900, badge: "",      sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 88 },
+  { id: 12, name: "Sudadera Colorblock",      cat: "sudaderas", art: "hoodie", c1: "#ff7a2f", c2: "#ffc93c", price: 134900, old: 189900,   badge: "",        sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 104 },
 
   /* ---------------- CHAQUETAS ---------------- */
   { id: 13, name: "Chaqueta Bomber Utility",  cat: "chaquetas", art: "jacket", c1: "#23252b", c2: "#55565e", price: 259900, old: 359900, badge: "Más vendido", sizes: ["M","L","XL","XXL"],   rating: 4.9, reviews: 186 },
-  { id: 14, name: "Chaqueta Denim Classic",   cat: "chaquetas", art: "jacket", c1: "#2e5c8a", c2: "#79a8d6", price: 219900, old: 309900, badge: "-29%",        sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 149 },
-  { id: 15, name: "Chaqueta Windbreaker",     cat: "chaquetas", art: "jacket", c1: "#12614a", c2: "#3fbf95", price: 189900, old: 269900, badge: "Oferta",      sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 121 },
+  { id: 14, name: "Chaqueta Denim Classic",   cat: "chaquetas", art: "jacket", c1: "#2e5c8a", c2: "#79a8d6", price: 219900, old: 309900,   badge: "",        sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 149 },
+  { id: 15, name: "Chaqueta Windbreaker",     cat: "chaquetas", art: "jacket", c1: "#12614a", c2: "#3fbf95", price: 189900, old: 269900, badge: "",      sizes: ["S","M","L","XL","XXL"], rating: 4.7, reviews: 121 },
   { id: 16, name: "Chaqueta Puffer Light",    cat: "chaquetas", art: "jacket", c1: "#3a2b52", c2: "#7b5fa8", price: 289900, old: 399900, badge: "Nuevo",       sizes: ["M","L","XL","XXL"],   rating: 4.9, reviews: 97 },
-  { id: 17, name: "Chaqueta Bomber Slim",     cat: "chaquetas", art: "jacket", c1: "#4a3a2b", c2: "#9a7c5b", price: 249900, old: 349900, badge: "-29%",        sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 84 },
-  { id: 18, name: "Chaqueta Trucker Black",   cat: "chaquetas", art: "jacket", c1: "#101216", c2: "#3a3f4a", price: 229900, old: 329900, badge: "Oferta",      sizes: ["M","L","XL","XXL"],   rating: 4.8, reviews: 112 }
+  { id: 17, name: "Chaqueta Bomber Slim",     cat: "chaquetas", art: "jacket", c1: "#4a3a2b", c2: "#9a7c5b", price: 249900, old: 349900,   badge: "",        sizes: ["S","M","L","XL"],       rating: 4.8, reviews: 84 },
+  { id: 18, name: "Chaqueta Trucker Black",   cat: "chaquetas", art: "jacket", c1: "#101216", c2: "#3a3f4a", price: 229900, old: 329900, badge: "",      sizes: ["M","L","XL","XXL"],   rating: 4.8, reviews: 112 }
 ];
 
 const TESTIMONIALS = [
@@ -132,7 +123,7 @@ const TESTIMONIALS = [
 const FAQS = [
   { q: "¿Cómo funciona el pago contra entrega?", a: "Solo envías tu pedido por WhatsApp, lo recibes en tu puerta, revisas el producto y pagas en efectivo al repartidor. No necesitas tarjeta ni transferencia previa." },
   { q: "¿Cuánto demora mi pedido?", a: "Despachamos el mismo día si compras antes de las 5:00 p.m. El envío tarda entre 24 y 48 horas dependiendo de tu ciudad." },
-  { q: "¿Cuánto cuesta el envío?", a: `El envío cuesta ${money(CONFIG.shipping.cost)} a todo el país. Es GRATIS en compras mayores a ${money(CONFIG.shipping.freeOver)}.` },
+  { q: "¿Cómo es el envío?", a: "Despachamos desde bodega en 24–48 horas a todo el país. El valor del envío te lo confirmamos por WhatsApp según tu ciudad y pagas contra entrega." },
   { q: "¿Puedo cambiar la talla o el producto?", a: "Sí. Tienes 7 días para cambios sin costo. Solo escríbenos por WhatsApp y coordinamos la recolección." },
   { q: "¿Los productos son originales?", a: "Sí, trabajamos con importadores autorizados. Garantizamos calidad original en toda la colección de camisas, chaquetas y sudaderas." },
   { q: "¿A qué ciudades llegan?", a: "Despachamos a todo el país desde nuestra bodega en 24–48 horas. Solo escríbenos por WhatsApp con tu ciudad y te confirmamos el tiempo exacto." }

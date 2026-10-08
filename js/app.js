@@ -23,12 +23,6 @@
   function save(key, val) {
     try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
   }
-  function lsGet(key) {
-    try { return localStorage.getItem(key); } catch (e) { return null; }
-  }
-  function lsSet(key, val) {
-    try { localStorage.setItem(key, val); } catch (e) {}
-  }
 
   /* ---------- WHATSAPP ---------- */
   function waLink(text) {
@@ -58,9 +52,6 @@
     const full = Math.round(n);
     return "★".repeat(full) + "☆".repeat(5 - full);
   }
-  function discount(p) {
-    return Math.round((1 - p.price / p.old) * 100);
-  }
 
   function cardHTML(p) {
     const badgeClass = p.badge === "Más vendido" ? "card__badge--hot"
@@ -68,7 +59,7 @@
     return `
     <article class="card" data-id="${p.id}" data-reveal>
       <div class="card__media" data-open="${p.id}">
-        <span class="card__badge ${badgeClass}">${p.badge}</span>
+        ${p.badge ? `<span class="card__badge ${badgeClass}">${p.badge}</span>` : ""}
         <img src="${artURI(p)}" alt="${p.name}" loading="lazy">
         <div class="card__quick">Vista rápida</div>
       </div>
@@ -78,15 +69,10 @@
           <span>${p.rating} (${p.reviews})</span>
         </div>
         <h3 class="card__name" data-open="${p.id}">${p.name}</h3>
-        <div class="card__price">
-          <strong>${money(p.price)}</strong>
-          <s>${money(p.old)}</s>
-          <span class="card__off">-${discount(p)}%</span>
-        </div>
         <div class="card__ship">🚚 Envío contra entrega · <b>24-48h</b></div>
         <div class="card__actions">
           <button class="btn btn--add" data-add="${p.id}">Agregar al pedido</button>
-          <a class="card__wa" data-wa="hola, me interesa: ${p.name} (${money(p.price)})" href="#" aria-label="Consultar por WhatsApp">
+          <a class="card__wa" data-wa="hola, me interesa: ${p.name}" href="#" aria-label="Consultar por WhatsApp">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.37 9.37 0 0 1-1.44-5.01c0-5.18 4.22-9.4 9.41-9.4a9.34 9.34 0 0 1 9.4 9.4c0 5.19-4.22 9.42-9.4 9.42z"/></svg>
           </a>
         </div>
@@ -107,9 +93,7 @@
       const q = state.q.toLowerCase();
       list = list.filter((p) => p.name.toLowerCase().includes(q) || p.cat.includes(q));
     }
-    if (state.sort === "low") list.sort((a, b) => a.price - b.price);
-    else if (state.sort === "high") list.sort((a, b) => b.price - a.price);
-    else if (state.sort === "rating") list.sort((a, b) => b.rating - a.rating);
+    if (state.sort === "rating") list.sort((a, b) => b.rating - a.rating);
     else list.sort((a, b) => b.reviews - a.reviews);
     return list;
   }
@@ -120,15 +104,6 @@
     $("#empty").hidden = list.length > 0;
     fillWhatsAppLinks();
     observeReveal();
-  }
-
-  function renderOffers() {
-    const offers = [...PRODUCTS]
-      .filter((p) => p.old > p.price)
-      .sort((a, b) => discount(b) - discount(a))
-      .slice(0, 4);
-    $("#offerGrid").innerHTML = offers.map(cardHTML).join("");
-    fillWhatsAppLinks();
   }
 
   /* ---------- CARRITO ---------- */
@@ -164,16 +139,6 @@
     toast("Producto eliminado", "🗑️");
   }
 
-  function totals() {
-    const sub = state.cart.reduce((s, i) => {
-      const p = byId(i.id);
-      return s + (p ? p.price * i.qty : 0);
-    }, 0);
-    const free = sub >= CONFIG.shipping.freeOver;
-    const ship = state.cart.length === 0 ? 0 : free ? 0 : CONFIG.shipping.cost;
-    return { sub, ship, free, total: sub + ship };
-  }
-
   function updateCart() {
     const count = state.cart.reduce((s, i) => s + i.qty, 0);
     $("#cartCount").textContent = count;
@@ -203,29 +168,11 @@
                 <span>${i.qty}</span>
                 <button data-qty="1" data-key="${i.key}" aria-label="Agregar uno">+</button>
               </div>
-              <div class="ci__price">${money(p.price * i.qty)}</div>
             </div>
             <a class="ci__remove" data-remove="${i.key}">Eliminar</a>
           </div>
         </div>`;
       }).join("");
-    }
-
-    const t = totals();
-    $("#cartSub").textContent = money(t.sub);
-    $("#cartShip").textContent = state.cart.length === 0 ? "—" : t.free ? "GRATIS" : money(t.ship);
-    $("#cartTotal").textContent = money(t.total);
-
-    const hint = $("#freeHint");
-    if (t.free) {
-      hint.textContent = "🎉 ¡Tu envío es GRATIS!";
-      hint.classList.add("is-done");
-    } else if (!state.cart.length) {
-      hint.textContent = `Envío GRATIS en compras desde ${money(CONFIG.shipping.freeOver)}`;
-      hint.classList.remove("is-done");
-    } else {
-      hint.textContent = `Te faltan ${money(CONFIG.shipping.freeOver - t.sub)} para envío GRATIS`;
-      hint.classList.remove("is-done");
     }
   }
 
@@ -250,10 +197,9 @@
     if (!name) { toast("Escribe tu nombre para continuar", "✍️"); $("#buyerName").focus(); return; }
     if (!address) { toast("Escribe tu dirección de entrega", "📍"); $("#buyerAddress").focus(); return; }
 
-    const t = totals();
     const lines = state.cart.map((i, idx) => {
       const p = byId(i.id);
-      return `${idx + 1}. ${p.name} — Talla ${i.size} x${i.qty} = ${money(p.price * i.qty)}`;
+      return `${idx + 1}. ${p.name} — Talla ${i.size} x${i.qty}`;
     }).join("\n");
 
     const msg =
@@ -265,11 +211,7 @@
 *Productos:*
 ${lines}
 
-*Subtotal:* ${money(t.sub)}
-*Envío:* ${t.free ? "GRATIS" : money(t.ship)}
-*TOTAL A PAGAR AL RECIBIR:* ${money(t.total)}
-
-_Pago contra entrega en efectivo._`;
+_Me interesa confirmar el total y el envío antes de recibir._`;
 
     window.open(waLink(msg), "_blank", "noopener");
     toast("Abriendo WhatsApp...", "💬");
@@ -287,17 +229,12 @@ _Pago contra entrega en efectivo._`;
         </div>
         <div class="pm__body">
           <button class="pm__close" data-close-modal aria-label="Cerrar">✕</button>
-          <span class="pm__badge">${p.badge}</span>
+          ${p.badge ? `<span class="pm__badge">${p.badge}</span>` : ""}
           <h2 class="pm__name">${p.name}</h2>
           <div class="pm__rating">
             <span class="stars">${stars(p.rating)}</span>
             <b>${p.rating}</b> · ${p.reviews} opiniones
           </div>
-          <div class="pm__price">
-            <strong>${money(p.price)}</strong>
-            <s>${money(p.old)}</s>
-          </div>
-          <div class="pm__save">Ahorras ${money(p.old - p.price)} (-${discount(p)}%)</div>
           <p class="pm__desc">Prenda importada de alta calidad, tejido resistente y acabados premium. Talla fiel a la medida. Disponible para envío contra entrega a todo el país.</p>
 
           <span class="pm__label">Elige tu talla</span>
@@ -307,7 +244,7 @@ _Pago contra entrega en efectivo._`;
 
           <div class="pm__btns">
             <button class="btn btn--dark" data-add-modal="${p.id}">Agregar al pedido</button>
-            <a class="btn btn--wa" href="${waLink(`hola, me interesa: ${p.name} (${money(p.price)}), ¿está disponible?`)}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+            <a class="btn btn--wa" href="${waLink(`hola, me interesa: ${p.name}, ¿está disponible?`)}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
           </div>
 
           <div class="pm__points">
@@ -358,34 +295,6 @@ _Pago contra entrega en efectivo._`;
           <p>${f.a}</p>
         </div>
       </div>`).join("");
-  }
-
-  /* ---------- CONTADOR ---------- */
-  function startCountdown() {
-    const KEY = "1a_offer_end";
-    let end = Number(lsGet(KEY));
-    if (!end || isNaN(end) || end < Date.now()) {
-      end = Date.now() + CONFIG.offerEndsInHours * 3600 * 1000;
-      lsSet(KEY, end);
-    }
-    const box = $("#countdown");
-    const tick = () => {
-      let diff = end - Date.now();
-      if (diff <= 0) {
-        end = Date.now() + CONFIG.offerEndsInHours * 3600 * 1000;
-        lsSet(KEY, end);
-        diff = end - Date.now();
-      }
-      const h = Math.floor(diff / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      $("#cdH").textContent = String(h).padStart(2, "0");
-      $("#cdM").textContent = String(m).padStart(2, "0");
-      $("#cdS").textContent = String(s).padStart(2, "0");
-      box.classList.toggle("is-urgent", h < 6);
-    };
-    tick();
-    setInterval(tick, 1000);
   }
 
   /* ---------- REVEAL ---------- */
@@ -526,12 +435,10 @@ _Pago contra entrega en efectivo._`;
     safe(fillContactInfo);
     safe(fillWhatsAppLinks);
     safe(renderFilters);
-    safe(renderOffers);
     safe(renderCatalog);
     safe(renderReviews);
     safe(renderFaq);
     safe(updateCart);
-    safe(startCountdown);
     safe(bindEvents);
     safe(observeReveal);
   }
