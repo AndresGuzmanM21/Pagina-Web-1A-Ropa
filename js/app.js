@@ -6,7 +6,6 @@
 
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
-  const money = (n) => `${CONFIG.currency} ${n.toFixed(0)}`;
   const byId = (id) => PRODUCTS.find((p) => p.id === Number(id));
 
   const state = {
@@ -315,7 +314,7 @@ _Pago contra entrega en efectivo._`;
             <div class="pm__point"><b>✓</b> Pagas recién cuando recibes y revisas el producto</div>
             <div class="pm__point"><b>✓</b> Envío en 24-48 horas con seguimiento</div>
             <div class="pm__point"><b>✓</b> Cambio de talla gratis por 7 días</div>
-            <div class="pm__point"><b>✓</b> También puedes recogerlo en nuestro local</div>
+            <div class="pm__point"><b>✓</b> Despachamos desde bodega el mismo día</div>
           </div>
         </div>
       </div>`;
@@ -409,7 +408,7 @@ _Pago contra entrega en efectivo._`;
   /* ---------- HERO IMÁGENES ---------- */
   function setHeroImages() {
     const find = (id) => PRODUCTS.find((p) => p.id === id);
-    const map = { heroImg1: 4, heroImg2: 2, heroImg3: 7 };
+    const map = { heroImg1: 13, heroImg2: 7 };
     Object.entries(map).forEach(([elId, pid]) => {
       const el = document.getElementById(elId);
       const p = find(pid);
@@ -417,19 +416,9 @@ _Pago contra entrega en efectivo._`;
     });
   }
 
-  /* ---------- INFO DEL LOCAL ---------- */
-  function fillStoreInfo() {
-    $("#storeAddress").textContent = CONFIG.store.address;
-    $("#storeHours").textContent = CONFIG.store.hours;
-    $("#storePhone").textContent = `+${CONFIG.whatsapp}`;
-    $("#mapText").textContent = CONFIG.store.address;
-    $("#footerAddress").textContent = CONFIG.store.address;
-    $("#footerHours").textContent = CONFIG.store.hours;
+  /* ---------- CONTACTO ---------- */
+  function fillContactInfo() {
     $("#footerPhone").setAttribute("href", waLink("hola"));
-    $("#mapLink").setAttribute(
-      "href",
-      `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONFIG.store.mapQuery)}`
-    );
     $("#year").textContent = new Date().getFullYear();
   }
 
@@ -534,7 +523,7 @@ _Pago contra entrega en efectivo._`;
   function init() {
     const safe = (fn) => { try { fn(); } catch (e) { if (window.console) console.warn(e); } };
     safe(setHeroImages);
-    safe(fillStoreInfo);
+    safe(fillContactInfo);
     safe(fillWhatsAppLinks);
     safe(renderFilters);
     safe(renderOffers);
